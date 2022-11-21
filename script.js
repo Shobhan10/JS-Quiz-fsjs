@@ -71,11 +71,10 @@ function getSelected() {
             if (quizData[currentQuiz].correct === e.id) {
                 score++
                 h1.textContent = `Score - ${score}`;
-                l.style.color = "green"
-                console.log(l)
+                l.style.color = "#398300";
             } else {
                 h1.textContent = `Score - ${score}`;
-                l.style.color = "red";
+                l.style.color = "#B4161B";
             }
         }
         setTimeout(() => {
