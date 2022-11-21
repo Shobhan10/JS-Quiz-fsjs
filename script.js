@@ -33,31 +33,53 @@ const quizData = [
     },
 ];
 
-const quiz;
-const answerEls;
-const questionEl;
-const a_text;
-const b_text;
-const c_text;
-const d_text;
-const submitBtn;
+// const quiz;
+const quizHeader = document.querySelector(".quiz-header")
+const answerEls = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitBtn = document.getElementById("submit");
 
 let currentQuiz = 0
 let score = 0
 
+const h1 = document.createElement("h1");
+quizHeader.appendChild(h1)
+
 loadQuiz()
 
 function loadQuiz() {
-    
+    if (currentQuiz < quizData.length) {
+        questionEl.textContent = quizData[currentQuiz].question;
+        a_text.textContent = quizData[currentQuiz].a;
+        b_text.textContent = quizData[currentQuiz].b;
+        c_text.textContent = quizData[currentQuiz].c;
+        d_text.textContent = quizData[currentQuiz].d;
+    }
 }
 
 function deselectAnswers() {
 }
 
 function getSelected() {
-    
+    answerEls.forEach((e) => {
+        if (e.checked) {
+            if (quizData[currentQuiz].correct === e.id) {
+                score++
+                h1.textContent = `Score - ${score}`;
+            } else {
+                h1.textContent = `Score - ${score}`;
+            }
+        }
+        e.checked = false
+    })
+    currentQuiz++
 }
 
 submitBtn.addEventListener('click', () => {
-    
+    getSelected()
+    loadQuiz();
 })
