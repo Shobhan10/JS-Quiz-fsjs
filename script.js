@@ -66,20 +66,29 @@ function deselectAnswers() {
 
 function getSelected() {
     answerEls.forEach((e) => {
+        let l = document.querySelector(`[for=${e.id}]`)
         if (e.checked) {
             if (quizData[currentQuiz].correct === e.id) {
                 score++
                 h1.textContent = `Score - ${score}`;
+                l.style.color = "green"
+                console.log(l)
             } else {
                 h1.textContent = `Score - ${score}`;
+                l.style.color = "red";
             }
         }
-        e.checked = false
+        setTimeout(() => {
+            e.checked = false
+            l.style.color = "";
+        }, 1000);
     })
     currentQuiz++
 }
 
 submitBtn.addEventListener('click', () => {
     getSelected()
-    loadQuiz();
+    setTimeout(() => {
+        loadQuiz();
+    }, 1000);
 })
